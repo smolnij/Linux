@@ -10,3 +10,4 @@
 #### Minimal initramfs
 #### Skip initramfs
 #### Kernel config & build
+#### dbus-broker instead of D-Bus
