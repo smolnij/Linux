@@ -72,24 +72,9 @@ rw
 mount root device readwrite on boot
 
 
-tsc=reliable
-
-tsc=            Disable clocksource stability checks for TSC.
-                        Format: <string>
-                        [x86] reliable: mark tsc clocksource as reliable, this
-                        disables clocksource verification at runtime, as well
-                        as the stability checks done at bootup. Used to enable
-                        high-resolution timer mode on older hardware, and in
-                        virtualized environment.
-                        [x86] noirqtime: Do not use TSC to do irq accounting.
-                        Used to run time disable IRQ_TIME_ACCOUNTING on any
-                        platforms where RDTSC is slow and this accounting
-                        can add overhead.
-                        [x86] unstable: mark the TSC clocksource as unstable, this
-                        marks the TSC unconditionally unstable at bootup and
-                        avoids any further wobbles once the TSC watchdog notices.
 
 
+Passing the option "initcall_debug" on the kernel command line will cause timing information to be printed to the console for each initcall. initcalls are used to initialize statically linked kernel drivers and subsystems and contribute a significant amount of time to the Linux boot process. The output looks like this:
 
 #### Disable mitigations
 
