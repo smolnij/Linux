@@ -105,6 +105,7 @@ comment out debug flags?
 
 #### dbus-broker instead of D-Bus
 
+<<<<<<< HEAD
 #### Microcode
 
 
@@ -136,3 +137,25 @@ Another way to check it, is to install microcode package and check dmesg
 
 
 If you don't see the messages regarding microcode update, just microcode driver or so, your cpu don't need it, so skipping this extra step will speed up loading time.
+=======
+#### HW video acceleration
+
+Intel does not offer VDPAU drivers, they only support their VA-API. It is, however, possible to use Intel's VA-API drivers by way of libvdpau-va-gl.
+
+
+
+#### Other features
+Intel rapid start https://askubuntu.com/questions/699615/how-to-setup-intel-rapid-start
+https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/rst-linux-paper.pdf
+
+
+#### Browsers
+NetSurf
+Midori
+Palemoon
+Firefox tricks
+dom.image-lazy-loading.enabled=true
+
+### IO Schdeuler
+https://www.phoronix.com/scan.php?page=article&item=linux-56-nvme&num=4
+Overall though, using "none" as your I/O scheduler option will still generally offer the best performance for speedy NVMe SSD storage with a few exceptions. Similar tests on SATA HDD/SSDs off Linux 5.6 coming up shortly on Phoronix.
