@@ -26,6 +26,8 @@ The downside of UEFI is that it is proprietary and implemented by hardware vendo
 
 BIOS systems from the other hand are considered as legacy now, but well tested and simplier to set up.
 
+**Don't forget to create a FAT32 /efi partition. One of the next speedup options would be loading kernel by EFI directly, without a bootloader, so we would need you to have this partition a boot from it configured. MS recommends minimal size of 100mb. But we know who is MS so give it a good margin (like 10x, so 1GB) so next time they are not following own specs you are not screwed up.
+
 ## Filesystem
 **TL;DR: SSD drive - F2FS, if you are newbie go for EXT4**
 
@@ -47,7 +49,7 @@ JFFS/JFFS2 is somewhat exotic, but also desingned for NAND devices. Never tried 
 # Your system installed
 Congrats! Not everyone gets to this point.
 
-Here I assume that yor system is installed the default way choosen by developers of your distro. 
+Here I assume that your system is installed the default way choosen by developers of your distro. 
 
 For most of users I suggest "installing then tuning" way. 
 
@@ -163,7 +165,11 @@ You can check if your distro kernel is built with such option by executing
 
 
 
+
+If everything above didn't work, with your motherboard UEFI, you can try to build Unified Kernel Image https://wiki.archlinux.org/title/Unified_kernel_image and try one more time. UKI is just one file, so it is less likely to trigger your vendor UEFI bugs.
+
 ### Building own kernel
+CFLAGS
 Next step for boot speed up would be building own kernel without initramfs.
 Best is UKI without initramfs
 
