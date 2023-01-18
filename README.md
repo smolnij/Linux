@@ -154,7 +154,17 @@ Another way to check it, is to install microcode package and check dmesg
 
 If you don't see the messages regarding microcode update, just microcode driver or so, your cpu don't need it, so skipping this extra step will speed up loading time.
 
+### Configuring EFI firmware to load the kernel as an EFI executable
+If your motherboard has proper UEFI implementation it can load your kernel directly. Most likely it is, but you won't know if it has bugs before trying it.
+You also need a kernel built with CONFIG_EFI_STUB=y kernel option.
+The option is enabled by default on Arch Linux kernels.
+You can check if your distro kernel is built with such option by executing 
+    zgrep CONFIG_PROC_EVENTS= /proc/config.gz
+
+
+
 ### Building own kernel
+Next step for boot speed up would be building own kernel without initramfs.
 Best is UKI without initramfs
 
 
