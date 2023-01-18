@@ -24,7 +24,7 @@ Apart from being more recent technology, UEFI allows us to load our kernel witho
 
 The downside of UEFI is that it is proprietary and implemented by hardware vendors. It is quite often buggy and/or implemented with pity limitations, which could generate extra problems during installation. For example there was a firmware on HP 840 laptops, where path to bootloader was hardcoded to "EFI/Microsoft/Boot/bootmgfw.efi". Since linux is highly customizable and flexible, of course you can put your bootloader's file where it is hardcoded, but what a limitation!
 
-BIOS systems from the other hand are conidered as legacy now, but well tested and simplier to set up.
+BIOS systems from the other hand are considered as legacy now, but well tested and simplier to set up.
 
 ## Filesystem
 **TL;DR: SSD drive - F2FS, if you are newbie go for EXT4**
