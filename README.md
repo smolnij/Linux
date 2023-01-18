@@ -140,8 +140,8 @@ It is possible to find out if the intel-ucode.img contains a microcode image for
 
     # bsdtar -Oxf /boot/intel-ucode.img | iucode_tool -tb -lS -
 
-    If an update is available, it should show up below selected microcodes
-    The microcode might already be in your vendor bios and not show up loading in dmesg. Compare to the current microcode running grep microcode /proc/cpuinfo
+If an update is available, it should show up below selected microcodes
+The microcode might already be in your vendor bios and not show up loading in dmesg. Compare to the current microcode running grep microcode /proc/cpuinfo
 
 
 Another way to check it, is to install microcode package and check dmesg
