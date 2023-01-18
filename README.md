@@ -77,15 +77,6 @@ That enables framebuffer compression which can reduce power consumption while re
 
 That feature makes boot smoother by doing some framebuffer manipulations so screen don't flicker upon boot.
 
-**rootfstype=f2fs**
-
-That is only needed if your kernel is compiled to not use initramfs image. If your root fs is EXT4, then parameter will look like rootfstype=ext4.
-Skipping initramfs speeds up your boot process, and is described **HERE** (noteforself: make a link). 
-
-**noinitrd**
-
-That is only needed if your kernel is compiled to not use initramfs image.
-
 **console=tty0**
 
 With no console parameter the kernel will use the first virtual terminal, which is /dev/tty0. A user at the keyboard uses this virtual terminal by pressing Ctrl-Alt-F1.
@@ -111,37 +102,25 @@ UP and SMP versions of the instructions to allow switching back to
 SMP at runtime, when hotplugging in a new CPU, which is especially
 useful in virtualized environments.
 
+*Two options below are only for kernels built to not use initramfs (you have to build it yourself with such an option)*
 
-**page_alloc.shuffle=1**
+**rootfstype=f2fs**
 
- Randomization of the page allocator improves the average utilization of a direct-mapped memory-side-cache. See section
-5.2.27 Heterogeneous Memory Attribute Table (HMAT) in the ACPI
-6.2a specification for an example of how a platform advertises
-the presence of a memory-side-cache. There are also incidental
-security benefits as it reduces the predictability of page
-allocations to compliment SLAB_FREELIST_RANDOM, but the
-default granularity of shuffling on 4MB (MAX_ORDER) pages is
-selected based on cache utilization benefits.
+That is only needed if your kernel is compiled to not use initramfs image. If your root fs is EXT4, then parameter will look like rootfstype=ext4.
+Skipping initramfs speeds up your boot process, and is described **HERE** (noteforself: make a link). 
 
-While the randomization improves cache utilization it may
-negatively impact workloads on platforms without a cache. For
-this reason, by default, the randomization is enabled only
-after runtime detection of a direct-mapped memory-side-cache.
-Otherwise, the randomization may be force enabled with the
-'page_alloc.shuffle' kernel command line parameter.
+**noinitrd**
+
+That is only needed if your kernel is compiled to not use initramfs image.
 
 
-**rcu_nocbs=0-64**
 
-https://utcc.utoronto.ca/~cks/space/blog/linux/KernelRcuNocbsMeaning
-rcu_nocbs=0-N
-where N is the number of CPUs you have minus one
-However, the rcu_nocbs=0-N setting we're using specifies all CPUs, so it shifts all RCU callbacks from softirq context during interrupt handling (on whatever specific CPU involved) to kernel threads (on any CPU). As far as I can see, this has two potentially significant effects, given that Matt Dillon of DragonFly BSD has reported an issue with IRETQ that completely stops a CPU under some circumstances. First, our Ryzen CPUs will spend less time in interrupt handling, possibly much less time, which may narrow any timing window required to hit Matt Dillon's issue. Second, RCU callback processing will continue even if a CPU stops responding to IPIs, although I expect that a CPU not responding to IPIs is going to cause the Linux kernel various other sorts of heartburn.
 
 ### Microcode updates
 
 
-
+### Building own kernel
+Best is UKI without initramfs
 
 
 
