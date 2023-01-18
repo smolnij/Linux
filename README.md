@@ -26,7 +26,7 @@ The downside of UEFI is that it is proprietary and implemented by hardware vendo
 
 BIOS systems from the other hand are considered as legacy now, but well tested and simplier to set up.
 
-**Don't forget to create a FAT32 /efi partition. One of the next speedup options would be loading kernel by EFI directly, without a bootloader, so we would need you to have this partition a boot from it configured. MS recommends minimal size of 100mb. But we know who is MS so give it a good margin (like 10x, so 1GB) so next time they are not following own specs you are not screwed up.
+Don't forget to create a FAT32 /efi partition. One of the next speedup options would be loading kernel by EFI directly, without a bootloader, so we would need you to have this partition (and booting up from it) configured. MS recommends minimal size of 100mb. But we know who is MS so give it a good margin (like 10x, so 1GB) so next time they are not following own specs you are not screwed up.
 
 ## Filesystem
 **TL;DR: SSD drive - F2FS, if you are newbie go for EXT4**
