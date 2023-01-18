@@ -162,7 +162,7 @@ You also need a kernel built with CONFIG_EFI_STUB=y kernel option.
 The option is enabled by default on Arch Linux kernels.
 You can check if your distro kernel is built with such option by executing 
 
-    zgrep CONFIG_PROC_EVENTS= /proc/config.gz
+    zgrep CONFIG_EFI_STUB /proc/config.gz
 
 
 
