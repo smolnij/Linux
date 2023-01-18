@@ -117,7 +117,42 @@ That is only needed if your kernel is compiled to not use initramfs image.
 
 
 ### Microcode updates
+As per Arch wiki https://wiki.archlinux.org/title/microcode
+*Processor manufacturers release stability and security updates to the processor microcode. These updates provide bug fixes that can be critical to the stability of your system. Without them, you may experience spurious crashes or unexpected system halts that can be difficult to track down.
+All users with an AMD or Intel CPU should install the microcode updates to ensure system stability.*
 
+There microcode updates are usually added before the initrd image (should be loaded earlier) in your bootloader config.
+Check your bootloader config as described by the arch wiki in the link above.
+Most likely maintainers of your distro have already included it in.
+
+**Now speedup tip:** Your CPU might not need these microcode updates. You can check if your cpu is actually present in the microcode image.
+
+Detecting available microcode update
+
+It is possible to find out if the intel-ucode.img contains a microcode image for the running CPU with iucode-tool.
+
+    Install intel-ucode (changing initrd is not required for detection)
+    Install iucode-tool
+
+    # modprobe cpuid
+
+    Extract microcode image and search it for your cpuid:
+
+    # bsdtar -Oxf /boot/intel-ucode.img | iucode_tool -tb -lS -
+
+    If an update is available, it should show up below selected microcodes
+    The microcode might already be in your vendor bios and not show up loading in dmesg. Compare to the current microcode running grep microcode /proc/cpuinfo
+
+
+Another way to check it, is to install microcode package and check dmesg
+
+    [    0.000000] CPU0 microcode updated early to revision 0x1b, date = 2014-05-29
+    [    0.221951] CPU1 microcode updated early to revision 0x1b, date = 2014-05-29
+    [    0.242064] CPU2 microcode updated early to revision 0x1b, date = 2014-05-29
+    [    0.262349] CPU3 microcode updated early to revision 0x1b, date = 2014-05-29
+
+
+If you don't see the messages regarding microcode update, just microcode driver or so, your cpu don't need it, so skipping this extra step will speed up loading time.
 
 ### Building own kernel
 Best is UKI without initramfs
